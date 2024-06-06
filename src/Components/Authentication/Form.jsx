@@ -1,20 +1,20 @@
+import React from 'react';
 
-
-export const Form = () => {
+export const Form = (props) => {
   return (
     <div>
         <h2>
-            <span></span>
+            <span>{props.errorData?.message}</span>
         </h2>
 
         <div>
-            <label>Email</label><br/>
-            <input type="text" name="email"></input>
+            <label for="email">Email</label><br/>
+            <input type="text" id="email" name="email" value={props.formData.user?.email} onChange={props.onChangeHandler}/>
         </div>
 
         <div>
-            <label>Password</label><br/>
-            <input type="password" name="password"></input>
+            <label for="password">Password</label><br/>
+            <input type="password" id="password" name="password" value={props.formData.user?.password} onChange={props.onChangeHandler} />
         </div>
     </div>
   )

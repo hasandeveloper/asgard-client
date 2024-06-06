@@ -1,13 +1,23 @@
+import React from 'react';
 import { SignIn } from "./Authentication/SignIn";
-import { SignUp } from "./Authentication/SignUp";
+import { Dashboard } from './Dashboard';
+import { authToken } from '../Context/AuthenticationContext';
 
 export const Home = () => {
-  return (
-    <>
-        <SignUp/>
-        <SignIn/>
-    </>
-  )
+    const token = authToken()
+
+    let content;
+    if (token != null) {
+        content = <Dashboard/>;
+    } else {
+        content = <SignIn />;
+    }
+
+    return (
+        <>
+            {content}
+        </>
+    );
 }
 
 export default Home;
