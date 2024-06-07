@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./Components/Home";
 import { SignUp } from "./Components/Authentication/SignUp";
 import { SignIn } from "./Components/Authentication/SignIn";
-import { Dashboard } from './Components/Dashboard';
 import { AuthenticationProvider } from '../src/Context/AuthenticationContext';
 import PrivateRoutes from './Utils/PrivateRoutes';
 
@@ -14,7 +13,6 @@ export const App = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<PrivateRoutes/>}>
-            <Route path="/dashboard" element={<Dashboard/>} exact/>
             <Route path="/" element={<Home/>} exact/>
           </Route>
 

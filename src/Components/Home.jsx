@@ -1,14 +1,14 @@
-import React from 'react';
-import { Dashboard } from './Dashboard';
+import React, {useContext} from 'react';
+import { ListTask } from './Task/ListTask';
+import { TaskProvider } from '../Context/TaskContext';
 
 export const Home = () => {
 
     return (
-        <>
-            <Dashboard/>
-        </>
+        <TaskProvider>
+            <ListTask/>
+        </TaskProvider>
     );
 }
 
 export default Home;
-
