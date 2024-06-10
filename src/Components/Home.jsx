@@ -7,7 +7,7 @@ export const Home = () => {
     return (
         <>
             <div>
-                <button onClick={() => navigate("/create_task")}>Create Task</button>
+                <button onClick={() => navigate("/create_task")}>Add Task</button>
             </div>
             <ListTask/>
         </>
