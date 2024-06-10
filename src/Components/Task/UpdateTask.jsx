@@ -7,7 +7,7 @@ import getTask from "../../Services/getTask";
 export const UpdateTask = () => {
     const { id } = useParams();
     const navigate = useNavigate()
-    const { state, errorData, onChangehandler, taskFormData, setTaskFormData, handleUpdateTask } = useContext(TaskContext)
+    const { state, errorData, onChangehandler, taskFormData, setTaskFormData, handleTask } = useContext(TaskContext)
 
     useEffect(() => {
         const fetchTask = async () => {
@@ -28,7 +28,7 @@ export const UpdateTask = () => {
 
     const updateTask = async(e) => {
         e.preventDefault()
-        const result = await handleUpdateTask(e)
+        const result = await handleTask("PUT")
         if (result) {
           navigate('/');
         }

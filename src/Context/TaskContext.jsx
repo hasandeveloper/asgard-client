@@ -29,15 +29,14 @@ export const TaskProvider = ({children}) => {
       })
     }
 
-    const handleUpdateTask = async (e) => {
-      e.preventDefault()
-      const response = await updateTask(taskFormData)
+    const handleTask = async (httpMethod) => {
+      const response = await updateTask(taskFormData,httpMethod)
       if(response.status === 422){
         response.json().then(errorData => {
              setErrorData({message: errorData.message})
         });
         return false
-      }else if(response.status === 200){
+      }else if(response.status === 200 || response.status === 201){
         response.json().then(resp => {
             setErrorData({message: ""})
             console.log(resp)
@@ -46,8 +45,9 @@ export const TaskProvider = ({children}) => {
       }
     }
    
+
   return (
-    <TaskContext.Provider value={{state, dispatch, errorData, taskFormData, onChangehandler, setTaskFormData, handleUpdateTask, setErrorData}}>
+    <TaskContext.Provider value={{state, dispatch, errorData, taskFormData, onChangehandler, setTaskFormData, handleTask, setErrorData}}>
         {children}
     </TaskContext.Provider>
   )

@@ -24,6 +24,7 @@ export const Form = (props) => {
                 value={props.taskFormData.task?.status}
                 onChange={props.onChangehandler}
             >
+                <option value="">Select</option>
                 <option value="pending">Pending</option>
                 <option value="in_progress">In Progress</option>
                 <option value="to_do">To Do</option>

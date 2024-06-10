@@ -1,11 +1,11 @@
 import { TASK_URI, URL } from "../Utils/ApiUrl"
 import { authToken } from "../Context/AuthenticationContext"
 
-export const updateTask = async(taskFormData) => {
+export const updateTask = async(taskFormData, httpMethod) => {
     try{
-        const url = `${URL}${TASK_URI}/${taskFormData.task.id}`;
+        const url = httpMethod === "PUT" ? `${URL}${TASK_URI}/${taskFormData.task.id}` : `${URL}${TASK_URI}`
         const response = await fetch(url,{
-            method: 'PUT',
+            method: httpMethod,
             body: JSON.stringify(taskFormData),
             headers: {
                 'Authorization': authToken(),

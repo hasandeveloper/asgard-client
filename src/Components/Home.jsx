@@ -1,10 +1,16 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import { ListTask } from './Task/ListTask';
+import { useNavigate } from 'react-router';
 
 export const Home = () => {
-
+    const navigate = useNavigate()
     return (
-        <ListTask/>
+        <>
+            <div>
+                <button onClick={() => navigate("/create_task")}>Create Task</button>
+            </div>
+            <ListTask/>
+        </>
     );
 }
 
