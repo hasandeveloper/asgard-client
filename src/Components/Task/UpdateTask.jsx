@@ -1,10 +1,54 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
+import { useContext, useEffect  } from "react";
+import { TaskContext } from "../../Context/TaskContext";
+import Form from "./Form";
+import getTask from "../../Services/getTask";
 
 export const UpdateTask = () => {
     const { id } = useParams();
-    debugger;
-// take object from useReducer state and iterate in form once you change then do update request to server and check errors  then do route to home once all success, home will do get request again howere ther you will get update objects.
+    const navigate = useNavigate()
+    const { state, errorData, onChangehandler, taskFormData, setTaskFormData, handleUpdateTask } = useContext(TaskContext)
+
+    useEffect(() => {
+        const fetchTask = async () => {
+            const task  = state.find(taskObj => taskObj.id == parseInt(id))
+            if (task) {
+                setTaskFormData({task: task });
+            }else{
+                const response = await getTask(parseInt(id))
+                if(response.status === 200){
+                    response.json().then(data => {
+                        setTaskFormData({task: data });
+                    })
+                }
+            }
+        }
+        fetchTask()
+    }, []);
+
+    const updateTask = async(e) => {
+        e.preventDefault()
+        const result = await handleUpdateTask(e)
+        if (result) {
+          navigate('/');
+        }
+    }
+    
   return (
-    <div>UpdateTask</div>
+    <div>
+        <h1>UpdateTask</h1>
+
+        <form onSubmit={updateTask}>
+            <Form 
+                errorData = {errorData}
+                onChangehandler={onChangehandler}
+                taskFormData={taskFormData}
+            />
+            <button type="submit">Update</button>
+            <button onClick={() => navigate(-1)}>Back</button>
+        </form>
+    </div>
   )
 }
+
+export default UpdateTask;
