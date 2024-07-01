@@ -43,7 +43,7 @@ export const ListTask = () => {
         <div>
           <table>
             <tbody>
-              {state.map(task => (
+              {state.filteredTasks.map(task => (
                 <tr key={task.id}>
                   <td>{task.title}</td>
                   <td>

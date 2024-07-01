@@ -2,7 +2,10 @@ import React, {createContext, useReducer, useState} from 'react'
 import taskReducer from '../Reducers/TaskReducer'
 import updateTask from '../Services/updateTask'
 
-const INITIAL_STATE = []
+const INITIAL_STATE = {
+  allTasks: [],
+  filteredTasks: []
+}
 
 export const TaskContext = createContext()
 
