@@ -1,4 +1,4 @@
-import { DELETE_TASK, FILTER_TASK, LIST_TASK } from "../Utils/ApiUrl";
+import { DELETE_TASK, FILTER_STATUS, FILTER_TASK, LIST_TASK } from "../Utils/ApiUrl";
 
 export const taskReducer = (state, action) => {
     if(action.type === DELETE_TASK ){
@@ -14,6 +14,18 @@ export const taskReducer = (state, action) => {
         }
     }else if(action.type === FILTER_TASK){
         const filtered = state.allTasks.filter((task) => task.title.toLowerCase().includes(action.payload.toLowerCase()))
+        return {
+            ...state,
+            filteredTasks: filtered
+        }
+    }else if(action.type === FILTER_STATUS){
+        if(action.payload === ''){
+            return {
+                ...state,
+                filteredTasks: state.allTasks
+            }
+        }
+        const filtered = state.allTasks.filter((task) => task.status === action.payload)
         return {
             ...state,
             filteredTasks: filtered
