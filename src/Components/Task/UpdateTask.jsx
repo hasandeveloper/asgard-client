@@ -11,7 +11,7 @@ export const UpdateTask = () => {
 
     useEffect(() => {
         const fetchTask = async () => {
-            const task  = state.find(taskObj => taskObj.id == parseInt(id))
+            const task  = state.filteredTasks.find(taskObj => taskObj.id == parseInt(id))
             if (task) {
                 setTaskFormData({task: task });
             }else{
